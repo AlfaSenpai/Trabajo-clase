@@ -1,7 +1,30 @@
-version: "3.8"
+version: '3.8'
 
 services:
   redis:
     image: redis:6
     ports:
       - "6379"
+
+  python:
+    image: python:3.9-slim
+    volumes:
+      - .:/app
+    ports:
+      - "5000"
+    depends_on:
+      - db
+      - redis
+  
+  db:
+    image: postgres:latest
+    container_name: mydatabase
+    restart: always
+    environment:
+      - POSTGRES_ROOT_PASSWORD=password
+      - POSTGRES_DATABASE=user
+    ports:
+      - "5432"
+
+
+      
