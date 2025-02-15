@@ -20,24 +20,25 @@ services:
   
   db:
     image: postgres:latest
-    container_name: mydatabase
+    container_name: postgres_container
     restart: always
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=user
+      - POSTGRES_DB=mydatabase
     volumes:
-      - .:/var/lib/postgresql/data
+      - .:\XboxGames\Trabajo-clase\postgres\data
     ports:
       - "5432:5432"
 
   nginx:
     image: nginx:latest
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - web
-    command: [ "NGINX", "-g", "daemon off;" ]
+
 
       
