@@ -20,7 +20,7 @@ services:
   
   db:
     image: postgres:latest
-    container_name: mydatabase
+    container_name: postgres_container
     restart: always
     environment:
     
@@ -28,7 +28,11 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_DB=mydatabase
     volumes:
+<<<<<<< HEAD
       - .:\EjerDocker\trabajo\volumen
+=======
+      - .:\XboxGames\Trabajo-clase\postgres\data
+>>>>>>> 9af9f5ae1c5721497b2e88aafb1a035a4150c48a
     ports:
       - "5432:5432"
 
@@ -40,5 +44,10 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - web
+<<<<<<< HEAD
     command: ["nginx", "-g", "daemon off;"]
+=======
+
+
+>>>>>>> 9af9f5ae1c5721497b2e88aafb1a035a4150c48a
       
