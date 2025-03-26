@@ -1,1 +1,53 @@
-igfgifgnfg
+version: '3.8'
+
+services:
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile    
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+      - redis
+  
+  db:
+    image: postgres:latest
+    container_name: postgres_container
+    restart: always
+    environment:
+    
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=mydatabase
+    volumes:
+<<<<<<< HEAD
+      - .:\EjerDocker\trabajo\volumen
+=======
+      - .:\XboxGames\Trabajo-clase\postgres\data
+>>>>>>> 9af9f5ae1c5721497b2e88aafb1a035a4150c48a
+    ports:
+      - "5432:5432"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
+<<<<<<< HEAD
+    command: ["nginx", "-g", "daemon off;"]
+=======
+
+
+>>>>>>> 9af9f5ae1c5721497b2e88aafb1a035a4150c48a
+      
